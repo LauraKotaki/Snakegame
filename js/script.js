@@ -7,18 +7,26 @@ snake[0] = {
     y: 8 * box
 }
 let direction = "right";
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+} //mathfloor tura a virgula
 
 function criarBG() {
     context.fillStyle = "lightgreen";
     context.fillRect(0, 0, 16 * box, 16 * box); //vai desenhar onde vai ocorrer o jogo
 }
 
-
 function criarCobrinha() {
     for (i = 0; i < snake.length; i++) {
         context.fillStyle = "green";
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
+}
+
+function drawfood(){
+    context.fillStyle ="red";
+    context.fillRect(food.x, food.y, box, box);
 }
 
 document.addEventListener('keydown', update); //criação do evento ao aperta a tecla "para baixo"
@@ -39,6 +47,8 @@ function iniciarjogo() {
 
     criarBG();
     criarCobrinha();
+    drawfood();
+
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
